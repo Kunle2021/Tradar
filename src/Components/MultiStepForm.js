@@ -12,6 +12,8 @@ export default function MultiStepForm() {
     experience: "", //dropdown in years
     location: "",
     contact: "",
+    certificates: "",
+    policy: false,
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -50,8 +52,6 @@ export default function MultiStepForm() {
     <StepOne next={handleNextStep} data={data} />,
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
-
-  console.log(data);
 
   return (
     <div className="FirstForm">

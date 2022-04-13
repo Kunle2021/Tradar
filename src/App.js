@@ -1,14 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import MultiStepForm from "./Components/MultiStepForm";
-import CheckForm from "./Components/CheckForm";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <MultiStepForm/>
-      {/* <CheckForm /> */}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <MultiStepForm />
+        {/* <CheckForm /> */}
+      </div>
+    </BrowserRouter>
   );
 }
 
