@@ -2,26 +2,40 @@ import { useState, useRef } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { Container } from "react-bootstrap";
-import { Formik, Field } from "formik";
-import { Form, Button, Card, Alert } from "react-bootstrap";
 
 export default function MultiStepForm() {
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
-    Company: "",
-    Experience: "", //dropdown in years
-    Location: "",
-    Contact: "",
+    company: "",
+    experience: "", //dropdown in years
+    location: "",
+    contact: "",
   });
 
   const [currentStep, setCurrentStep] = useState(0);
 
   //Allows you to go back and foward within the form without losing data
-  const handleNextStep = (newData) => {
-    console.log(newData);
+  // const handleNextStep = (newData) => {
+  //   console.log(newData);
+  //   setData((prev) => ({ ...prev, ...newData }));
+  //   setCurrentStep((prev) => prev + 1);
+  // };
+
+  //May need to abstract the API request
+  const makeRequest = (formData) => {
+    console.log("Form Submitted", formData);
+  };
+
+  const handleNextStep = (newData, final = false) => {
     setData((prev) => ({ ...prev, ...newData }));
+
+    if (final) {
+      makeRequest(newData);
+      return;
+    }
+
     setCurrentStep((prev) => prev + 1);
   };
 

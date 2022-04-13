@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-import { Card, Alert } from "react-bootstrap";
+import { Button, Card, Alert } from "react-bootstrap";
 
 // Need to pass the values as props and split the form
 
-export default function StepOne(props) {
+const StepOne = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -13,56 +14,35 @@ export default function StepOne(props) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (values) => {
-    props.next(values);
-    console.log(values);
+    props.next(values, true);
   };
 
   return (
     <div>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Formik
-            initialValues={props.data}
-            onSubmit={(handleSubmit) => {
-              if (
-                values.Company &&
-                values.Experience &&
-                values.Location &&
-                values.Contact
-              ) {
-                console.log("Registration created!!");
-              }
-            }}
-            render={({ values, errors }) => (
-              <>
-                <Form onSubmit={handleSubmit}>
-                  <p>Email</p>
-                  <Field name="email" />
-                  <ErrorMessage name="email" />
+      <Formik initialValues={props.data} onSubmit={handleSubmit}>
+        {/* Line 24 renders the values from form and passes them into the onClick prev prop */}
+        {({ values }) => (
+          <Form>
+            <p>Name</p>
+            <Field name="name" />
+            <ErrorMessage name="name" />
 
-                  <p>Password</p>
-                  <Field name="password" />
-                  <ErrorMessage name="password" />
-                  <button type="button" onClick={() => props.prev(values)}>
-                    Back
-                  </button>
-                  <button type="submit">Next</button>
-                </Form>
-                <div className="w-100 text-center mt-2">
-                  Already have an account?
-                </div>
-              </>
-            )}
-          />
-        </Card.Body>
-      </Card>
+            <p>Company</p>
+            <Field name="company" />
+            <ErrorMessage name="company" />
+
+            <button type="submit">Submit</button>
+            <button type="button" onClick={() => props.prev(values)}>
+              Back
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
-}
+};
 
-//export default StepOne;
+export default StepOne;
 
 //
 //
