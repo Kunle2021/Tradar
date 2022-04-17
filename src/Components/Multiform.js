@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
-import StepOne from "./StepOne";
-import StepTwo from "./StepTwo";
-import { Container } from "react-bootstrap";
+import React, { useState } from "react";
+import Signuptwo from "./signuptwo";
+import Signup from "./signup";
+import { useUserContext } from "../context/userContext";
 
 export default function MultiStepForm() {
+  const { registerUser } = useUserContext();
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -12,7 +14,7 @@ export default function MultiStepForm() {
     experience: "", //dropdown in years
     location: "",
     contact: "",
-    certificates: "",
+    // certificate: "",
     policy: false,
   });
 
@@ -26,9 +28,20 @@ export default function MultiStepForm() {
   // };
 
   //May need to abstract the API request
-  const makeRequest = (formData) => {
-    console.log("Form Submitted", formData);
-  };
+  async function makeRequest(formData) {
+    const femail = formData.email;
+    const fpassword = formData.password;
+    console.log(femail);
+    console.log(fpassword);
+
+    try {
+      await registerUser(femail, fpassword);
+      console.log("Form Submitted", femail, fpassword);
+    } catch (error) {
+      alert("Error occured during Sign Up");
+      console.log(error);
+    }
+  }
 
   const handleNextStep = (newData, final = false) => {
     setData((prev) => ({ ...prev, ...newData }));
@@ -49,20 +62,13 @@ export default function MultiStepForm() {
   };
 
   const steps = [
-    <StepOne next={handleNextStep} data={data} />,
-    <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
+    <Signup next={handleNextStep} data={data} />,
+    <Signuptwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
 
   return (
-    <div className="FirstForm">
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          {steps[currentStep]}
-        </div>
-      </Container>
+    <div className="Form">
+      <div>{steps[currentStep]}</div>
     </div>
   );
 }

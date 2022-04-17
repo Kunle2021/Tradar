@@ -1,16 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-import MultiStepForm from "./Components/MultiStepForm";
-import { BrowserRouter } from "react-router-dom";
+import Auth from "./Components/auth";
+import Dashboard from "./Components/dashboard";
+import { useUserContext } from "./context/userContext";
 
 function App() {
+  const { user, loading, error } = useUserContext();
+
   return (
-    <BrowserRouter>
-      <div className="App">
-        <MultiStepForm />
-        {/* <CheckForm /> */}
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      {error && <p className="error">{error}</p>}
+      {loading ? <h2>Loading...</h2> : <> {user ? <Dashboard /> : <Auth />} </>}
+    </div>
   );
 }
 
