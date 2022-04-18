@@ -24,4 +24,4 @@ export default Auth;
 //       {/* <MultiStepForm/> */}
 //       <p onClick={toggleIndex}>
 //         {!index ? "New user? Click here " : "Already have an acount?"}
-//       </p>
+//       </p>thrr
