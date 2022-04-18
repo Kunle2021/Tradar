@@ -1,6 +1,6 @@
 import Auth from "./Components/auth";
 import Dashboard from "./Components/dashboard";
-import { useUserContext } from "./context/userContext";
+import { useUserContext } from "../src/Components/context/userContext";
 
 function App() {
   const { user, loading, error } = useUserContext();

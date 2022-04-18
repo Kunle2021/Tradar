@@ -7,7 +7,8 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth } from "../firebase";
+
+import { auth } from "../firebase/index";
 
 export const UserContext = createContext({});
 
@@ -34,31 +35,18 @@ export const UserContextProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const registerUser = (formData) => {
+  const registerUser = (email, password, firstName) => {
     setLoading(true);
-    console.log(formData);
-    const email = formData.email;
-    const password = formData.password;
-    const name = formData.name;
-    console.log(name);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() =>
         updateProfile(auth.currentUser, {
-          displayName: name,
+          displayName: firstName,
         })
       )
       .then((res) => console.log(res))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
-
-  // function registerUser(email, password) {
-  //   setLoading(true);
-
-  //   Need to create a database table to store additinial values - need to link to the user - can be done in the backend
-
-  //   return createUserWithEmailAndPassword(auth, email, password);
-  // }
 
   const signInUser = (email, password) => {
     setLoading(true);

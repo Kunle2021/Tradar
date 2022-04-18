@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import MultiStepForm from "./Multiform";
-import Signin from "./signin";
-import Signup from "./signup";
+import Signin from "./Form/SignIn";
+import SignUpForm from "./Form/SignUpForm";
+import "./Form/Login.css";
 
 const Auth = () => {
   const [index, setIndex] = useState(false);
@@ -10,7 +10,7 @@ const Auth = () => {
   };
   return (
     <div className="container">
-      {!index ? <Signin /> : <MultiStepForm />}
+      {!index ? <Signin /> : <SignUpForm />}
       <p onClick={toggleIndex}>
         {!index ? "New user? Click here " : "Already have an acount?"}
       </p>
