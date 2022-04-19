@@ -1,16 +1,33 @@
-import Auth from "./Components/auth";
-import Dashboard from "./Components/dashboard";
-import { useUserContext } from "../src/Components/context/userContext";
+import React from 'react'
+import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { Container } from '@mui/material'
 
-function App() {
-  const { user, loading, error } = useUserContext();
+import Navbar from './components/layout/Navbar'
+import Auth from './components/auth'
 
-  return (
-    <div className="App">
-      {error && <p className="error">{error}</p>}
-      {loading ? <h2>Loading...</h2> : <> {user ? <Dashboard /> : <Auth />} </>}
-    </div>
-  );
+import Dashboard from './pages/dashboard'
+import Quote from './pages/quote'
+import Success from './pages/success'
+
+const App = () => {
+	return useRoutes([
+		{ path: '/' },
+		{ path: 'dashboard', element: <Dashboard /> },
+		{ path: 'quote', element: <Quote /> },
+		{ path: 'success', element: <Success /> },
+		{ path: 'login', element: <Auth /> },
+	])
 }
 
-export default App;
+const AppWrapper = () => {
+	return (
+		<BrowserRouter>
+			<Container maxWidth='sm'>
+				<Navbar />
+				<App />
+			</Container>
+		</BrowserRouter>
+	)
+}
+
+export default AppWrapper
