@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter, useRoutes } from 'react-router-dom'
 import { Container } from '@mui/material'
 
-import Navbar from './components/layout/Navbar'
-import Auth from './components/auth'
+import Navbar from './Components/layout/Navbar'
+import Auth from './Components/auth'
 
 import Dashboard from './pages/dashboard'
 import Quote from './pages/quote'

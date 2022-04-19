@@ -1,7 +1,7 @@
 import { Button, Container, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import JobItem from '../components/dashboard/JobItem'
+import JobItem from '../Components/dashboard/JobItem'
 
 const Success = () => {
 	const location = useLocation()

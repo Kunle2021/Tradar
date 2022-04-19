@@ -3,6 +3,8 @@ import Signin from './Form/SignIn'
 import SignUpForm from './Form/SignUpForm'
 import './Form/Login.css'
 
+// auth.js
+
 const Auth = () => {
 	const [index, setIndex] = useState(false)
 	const toggleIndex = () => {

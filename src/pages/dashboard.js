@@ -1,6 +1,6 @@
 import { CircularProgress, Container, Grid, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
-import JobItem from '../components/dashboard/JobItem'
+import JobItem from '../Components/dashboard/JobItem'
 import { useUserContext } from '../context/userContext'
 import { useJobsContext } from '../context/jobsContext'
 

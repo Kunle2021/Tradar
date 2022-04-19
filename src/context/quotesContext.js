@@ -9,20 +9,18 @@ export const useQuotesContext = () => {
 }
 
 export const QuotesContextProvider = ({ children }) => {
-	const [quotes, setQuotes] = useState([
-		{
-			jobId: 1,
-			title: 'Leaky sink',
-			cost: 50,
-			date: '15/4/2022',
-		},
-	])
+	const [quotes, setQuotes] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 
 	const createQuote = values => {
 		setLoading(true)
-		// axios.post('', values)
+		axios
+			.post(
+				'https://us-central1-tradar-f2246.cloudfunctions.net/app/api/quotes',
+				values
+			)
+			.then(res => setQuotes(res.data))
 		console.log('sent')
 		setLoading(false)
 	}
@@ -33,6 +31,7 @@ export const QuotesContextProvider = ({ children }) => {
 		error,
 		createQuote,
 	}
+
 	return (
 		<QuotesContext.Provider value={contextValue}>
 			{children}

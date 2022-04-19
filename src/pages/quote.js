@@ -15,7 +15,7 @@ import {
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQuotesContext } from '../context/quotesContext'
-import JobItem from '../components/dashboard/JobItem'
+import JobItem from '../Components/dashboard/JobItem'
 
 const Quote = () => {
 	const navigate = useNavigate()
