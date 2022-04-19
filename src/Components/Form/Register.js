@@ -3,7 +3,7 @@ import React from "react";
 export default function Register({ setFormData, formData }) {
   return (
     <div>
-      <div className="personal-info-container">
+      <div className="form">
         <input
           type="text"
           placeholder="First Name..."
@@ -29,7 +29,14 @@ export default function Register({ setFormData, formData }) {
           }}
         />
 
-        {/* Add contact input */}
+        <input
+          type="text"
+          placeholder="Contact..."
+          value={formData.contact}
+          onChange={(e) => {
+            setFormData({ ...formData, contact: e.target.value });
+          }}
+        />
       </div>
     </div>
   );

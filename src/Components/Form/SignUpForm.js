@@ -27,9 +27,27 @@ export default function SignUpForm() {
     const email = formData.email;
     const password = formData.password;
     const firstName = formData.firstName;
+    const lastName = formData.lastName;
+    const company = formData.company;
+    const experience = formData.experience;
+    const location = formData.location;
+    const contact = formData.contact;
+    const certificateId = formData.certificateId;
+    const policy = formData.policy;
 
     try {
-      await registerUser(email, password, firstName);
+      await registerUser(
+        email,
+        password,
+        firstName,
+        lastName,
+        company,
+        experience,
+        location,
+        contact,
+        certificateId,
+        policy
+      );
       console.log("Form Submitted");
     } catch (error) {
       alert("Error occured during Sign Up");
@@ -52,13 +70,11 @@ export default function SignUpForm() {
   return (
     <div className="form">
       <div className="form-container">
-        <div className="header">
-          <h1>{FormNames[page]}</h1>
-        </div>
+        <div className="header">{/* <h1>{FormNames[page]}</h1> */}</div>
         <div className="body">{PageDisplay()}</div>
         <div className="footer">
           <button
-            disabled={page == 0}
+            disabled={page === 0}
             onClick={() => {
               setPage((currPage) => currPage - 1);
             }}

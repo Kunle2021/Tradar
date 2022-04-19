@@ -8,7 +8,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-import { auth } from "../firebase/index";
+import { auth, createUserDocument } from "../firebase/index";
 
 export const UserContext = createContext({});
 
@@ -35,12 +35,36 @@ export const UserContextProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const registerUser = (email, password, firstName) => {
+  const registerUser = (
+    email,
+    password,
+    firstName,
+    lastName,
+    company,
+    experience,
+    location,
+    contact,
+    certificateId,
+    policy
+  ) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() =>
+      .then(({ user }) => {
         updateProfile(auth.currentUser, {
           displayName: firstName,
+        });
+        return user;
+      })
+      .then((user) =>
+        createUserDocument(user, {
+          firstName,
+          lastName,
+          company,
+          experience,
+          location,
+          contact,
+          certificateId,
+          policy,
         })
       )
       .then((res) => console.log(res))

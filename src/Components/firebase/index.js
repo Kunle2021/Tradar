@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,3 +23,29 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+const usersCollectionRef = collection(db, "Users");
+
+export const createUserDocument = async (users, data) => {
+  console.log("Check");
+  // console.log(data.cId);
+  // console.log(users.email);
+  if (!users) return;
+
+  console.log(users, data);
+
+  await addDoc(usersCollectionRef, {
+    email: users.email,
+    firstname: data.firstName,
+    cId: data.certificateId,
+    company: data.company,
+    contact: data.contact,
+    experience: data.experience,
+    lastname: data.lastName,
+    location: data.location,
+    policy: data.policy,
+  });
+
+  console.log("Document written with ID");
+};

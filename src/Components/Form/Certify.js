@@ -3,7 +3,7 @@ import React from "react";
 export default function Certify({ setFormData, formData }) {
   return (
     <div>
-      <div className="personal-info-container">
+      <div className="form">
         <input
           type="text"
           placeholder="Experience..."
@@ -28,6 +28,22 @@ export default function Certify({ setFormData, formData }) {
             setFormData({ ...formData, certificateId: e.target.value });
           }}
         />
+        <div
+          className="check"
+          style={{ display: "flex", flexDirection: "row" }}
+        >
+          <label>
+            Terms and Condtions
+            <input
+              type="checkbox"
+              id="policy"
+              value={formData.policy}
+              onChange={(e) => {
+                setFormData({ ...formData, policy: e.target.value });
+              }}
+            />
+          </label>
+        </div>
 
         {/* Need to add the policy input */}
       </div>
