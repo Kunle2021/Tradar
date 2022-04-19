@@ -8,7 +8,7 @@ export const useJobsContext = () => {
 }
 
 export const JobsContextProvider = ({ children }) => {
-	const [jobs, setJobs] = useState([])
+	const [jobs, setJobs] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 

@@ -3,6 +3,7 @@ import SignUp from './SignUpReg'
 import Certify from './Certify'
 import Register from './Register'
 import { useUserContext } from '../../context/userContext'
+import { Button } from '@mui/material'
 
 export default function SignUpForm() {
 	const [page, setPage] = useState(0)
@@ -73,14 +74,18 @@ export default function SignUpForm() {
 				<div className='header'>{/* <h1>{FormNames[page]}</h1> */}</div>
 				<div className='body'>{PageDisplay()}</div>
 				<div className='footer'>
-					<button
+					<Button
+						color='success'
+						sx={{ my: 2 }}
 						disabled={page === 0}
 						onClick={() => {
 							setPage(currPage => currPage - 1)
 						}}>
-						Prev
-					</button>
-					<button
+						Previous
+					</Button>
+					<Button
+						variant='contained'
+						color='success'
 						onClick={() => {
 							if (page === FormNames.length - 1) {
 								alert('FORM SUBMITTED')
@@ -91,7 +96,7 @@ export default function SignUpForm() {
 							}
 						}}>
 						{page === FormNames.length - 1 ? 'Submit' : 'Next'}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>
