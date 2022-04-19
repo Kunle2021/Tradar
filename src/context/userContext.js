@@ -8,7 +8,7 @@ import {
 	sendPasswordResetEmail,
 } from 'firebase/auth'
 
-import { auth, createUserDocument } from '../components/firebase/index'
+import { auth, createUserDocument } from '../Components/firebase/index'
 
 export const UserContext = createContext({})
 
