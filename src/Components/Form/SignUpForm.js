@@ -18,7 +18,7 @@ export default function SignUpForm() {
     location: "",
     contact: "",
     certificateId: "",
-    policy: false,
+    policy: true,
   });
 
   const { registerUser } = useUserContext();

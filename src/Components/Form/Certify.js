@@ -30,16 +30,22 @@ export default function Certify({ setFormData, formData }) {
         />
         <div
           className="check"
-          style={{ display: "flex", flexDirection: "row" }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <label>
-            Terms and Condtions
+            Terms and Conditions
             <input
+              style={{ width: "12px", height: "12px" }}
               type="checkbox"
-              id="policy"
               value={formData.policy}
               onChange={(e) => {
                 setFormData({ ...formData, policy: e.target.value });
+                console.log(e.target.value);
               }}
             />
           </label>
