@@ -1,13 +1,33 @@
-import logo from "./logo.svg";
-import "./App.css";
-import MultiStepForm from "./Components/MultiStepForm";
+import React from 'react'
+import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { Container } from '@mui/material'
 
-function App() {
-  return (
-    <div className="App">
-      <MultiStepForm />
-    </div>
-  );
+import Navbar from './components/layout/Navbar'
+import Auth from './components/auth'
+
+import Dashboard from './pages/dashboard'
+import Quote from './pages/quote'
+import Success from './pages/success'
+
+const App = () => {
+	return useRoutes([
+		{ path: '/' },
+		{ path: 'dashboard', element: <Dashboard /> },
+		{ path: 'quote', element: <Quote /> },
+		{ path: 'success', element: <Success /> },
+		{ path: 'login', element: <Auth /> },
+	])
 }
 
-export default App;
+const AppWrapper = () => {
+	return (
+		<BrowserRouter>
+			<Container maxWidth='sm'>
+				<Navbar />
+				<App />
+			</Container>
+		</BrowserRouter>
+	)
+}
+
+export default AppWrapper
